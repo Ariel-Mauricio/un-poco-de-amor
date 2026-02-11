@@ -1,0 +1,392 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    background: #0a0a0a;
+}
+
+/* Animated background */
+.animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    z-index: 1;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Floating petals */
+.floating-petals {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.petal {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.4;
+    animation: float var(--duration) infinite ease-in-out;
+}
+
+.petal--1 { left: 5%; --duration: 8s; animation-delay: 0s; }
+.petal--2 { left: 15%; --duration: 10s; animation-delay: 1s; }
+.petal--3 { left: 25%; --duration: 9s; animation-delay: 2s; }
+.petal--4 { left: 35%; --duration: 11s; animation-delay: 0.5s; }
+.petal--5 { left: 50%; --duration: 12s; animation-delay: 1.5s; }
+.petal--6 { left: 65%; --duration: 10s; animation-delay: 0.8s; }
+.petal--7 { left: 75%; --duration: 9s; animation-delay: 2.5s; }
+.petal--8 { left: 85%; --duration: 11s; animation-delay: 1.2s; }
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.4;
+    }
+    50% {
+        transform: translateY(-20px) rotate(15deg);
+        opacity: 0.8;
+    }
+}
+
+/* Main container */
+.main-container {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Hola styles */
+.hola-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animations: slideDown 1s ease-out;
+}
+
+.hola-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 15vw, 8rem);
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(255, 105, 180, 0.8),
+        0 0 50px rgba(255, 20, 147, 0.6);
+    letter-spacing: 0.15em;
+    animation: slideDown 1.2s ease-out, glow 3s ease-in-out infinite;
+    line-height: 1;
+    margin: 2rem 0;
+}
+
+.hola-underline {
+    width: 200px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #ff69b4, transparent);
+    border-radius: 2px;
+    animation: expandWidth 1.5s ease-out;
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes expandWidth {
+    from {
+        width: 0;
+    }
+    to {
+        width: 200px;
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 
+            0 4px 6px rgba(0, 0, 0, 0.3),
+            0 0 30px rgba(255, 105, 180, 0.8),
+            0 0 50px rgba(255, 20, 147, 0.6);
+    }
+    50% {
+        text-shadow: 
+            0 4px 6px rgba(0, 0, 0, 0.3),
+            0 0 40px rgba(255, 20, 147, 1),
+            0 0 70px rgba(255, 20, 147, 0.8);
+    }
+}
+
+/* Content wrapper */
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    flex: 1;
+    justify-content: center;
+}
+
+/* Messages */
+.messages-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    width: 100%;
+    max-width: 600px;
+    margin: 2rem 0;
+}
+
+.message {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideUp 1s ease-out both;
+}
+
+.msg-1 { animation-delay: 0.6s; }
+.msg-2 { animation-delay: 0.8s; }
+.msg-3 { animation-delay: 1s; }
+.msg-4 { animation-delay: 1.2s; }
+
+.message p {
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    color: #ffffff;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.message:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Middle text */
+.middle-text {
+    animation: fadeIn 1.5s ease-out 1.4s both;
+}
+
+.middle-text p {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    color: #ffffff;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* CTA Button */
+.cta-button {
+    padding: 1.2rem 3rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    background: linear-gradient(135deg, #ff69b4, #ff1493);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(255, 20, 147, 0.4);
+    animation: scaleIn 1.6s ease-out both;
+}
+
+.cta-button:hover {
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 12px 30px rgba(255, 20, 147, 0.6);
+}
+
+.cta-button:active {
+    transform: scale(0.95);
+}
+
+.cta-button a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Footer text */
+.footer-text {
+    animation: fadeIn 2s ease-out 1.8s both;
+}
+
+.footer-text p {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .messages-container {
+        grid-template-columns: 1fr;
+        max-width: 90%;
+        gap: 1.5rem;
+    }
+
+    .message {
+        padding: 1.5rem;
+    }
+
+    .cta-button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+
+    .main-container {
+        padding: 1.5rem;
+    }
+}
+
+/* Flower page styles */
+.titulo {
+    color: rgba(255, 255, 255, 0.95);
+    text-align: center;
+    font-size: 1.8rem;
+    text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+    animation: fadeInDown 1s ease-out;
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .greetings {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .description h1 {
+        font-size: 1.8rem;
+    }
+
+    .description p {
+        font-size: 1rem;
+    }
+
+    .botones {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+
+    .titulo {
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (max-width: 574px) {
+    .greetings {
+        display: block;
+        font-size: 2.5rem;
+        font-weight: 800;
+        text-align: center;
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+
+    .description h1 {
+        font-size: 1.5rem;
+    }
+
+    .description p {
+        font-size: 0.95rem;
+    }
+
+    .botones {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .titulo {
+        font-size: 1.2rem;
+    }
+}
